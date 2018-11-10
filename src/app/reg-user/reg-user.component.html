@@ -1,0 +1,188 @@
+<!-- <p>
+  reg-user works!
+</p> -->
+
+
+<!-- bootstrap code for the sign up  -->
+
+<style type="text/css">
+	body {
+		color: #999;
+		background: #fafafa;
+		font-family: 'Roboto', sans-serif;
+	}
+	.form-control {
+        min-height: 41px;
+		box-shadow: none;
+		border-color: #e6e6e6;
+	}
+	.form-control:focus {
+		border-color: #00c1c0;
+	}
+    .form-control, .btn {        
+        border-radius: 3px;
+    }
+	.signup-form {
+		width: 425px;
+		margin: 0 auto;
+		padding: 30px 0;
+	}
+	.signup-form h2 {
+		color: #333;
+		font-weight: bold;
+        margin: 0 0 25px;
+    }
+    .signup-form form {
+    	margin-bottom: 15px;
+        background: #fff;
+		border: 1px solid #f4f4f4;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 40px 50px;
+    }
+	.signup-form .form-group {
+		margin-bottom: 20px;
+	}
+	.signup-form label {
+		font-weight: normal;
+		font-size: 13px;
+	}
+	.signup-form input[type="checkbox"] {
+		margin-top: 2px;
+	}    
+    .signup-form .btn {        
+        font-size: 16px;
+        font-weight: bold;
+		background: #00c1c0;
+		border: none;
+		min-width: 140px;
+        outline: none !important;
+    }
+	.signup-form .btn:hover, .signup-form .btn:focus {
+		background: #00b3b3;
+	}
+	.signup-form a {
+		color: #00c1c0;
+		text-decoration: none;
+	}	
+	.signup-form a:hover {
+		text-decoration: underline;
+	}
+</style>
+
+<div class="signup-form">
+  <!-- <form #form="ngForm" (ngSubmit)="userInfo(form)" action="/examples/actions/confirmation.php" method="post"> -->
+  
+    <form #form="ngForm" (ngSubmit)="registerUser(form.value)" method="post">
+    <h2>Register</h2>
+
+  <!--first name  -->
+      <div class="form-group">
+        <input type="text" 
+        ngModel
+        #firstname="ngModel"
+        name="firstname"
+        required
+        minlength="3"
+        maxlength="9" class="form-control" name="firstname"  placeholder="First Name" required="required">
+        <div *ngIf="firstname.touched && firstname.invalid">
+
+          <div *ngIf="firstname.errors.required" style="color: red"> first name required</div>
+          <div *ngIf="firstname.errors.minlength" style="color: red">min length is 3</div>
+
+        </div>
+      </div>
+
+
+
+
+  <!-- last name  -->
+      <div class="form-group">
+        <input type="text" 
+        ngModel
+        #lastname="ngModel"
+        name="lastname"
+        required 
+        minlength="3"
+        maxlenght="9"class="form-control" name="lastname" placeholder="Last Name" required="required">
+
+        <div *ngIf="lastname.touched && lastname.invalid">
+          <div *ngIf="lastname.errors.required" style="color: red"> last name is required</div>
+          <div *ngIf="lastname.errors.minlength" style="color: red">min length is 3</div>
+
+        </div>
+
+      </div>
+
+
+
+
+<!-- email address -->
+      <div class="form-group">
+        <input type="email" 
+        ngModel
+        #email="ngModel"
+        name="email"
+        required
+        pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" 
+        class="form-control" name="email" placeholder="Email Address" required="required">
+        <div *ngIf="email.touched && email.invalid">
+          <div *ngIf="email.errors.required" style="color: red" >Email is required</div>
+          <div *ngIf="email.errors.pattern" style="color: red">Email id is not supported</div>
+
+        </div>
+      </div>
+
+
+<!-- mobile number  -->
+      <div class="form-group">
+        <input type="text" 
+        ngModel
+        #mobilenumber="ngModel"
+        name="mobilenumber" 
+        required 
+        pattern="^([+][9][1]|[0])?[6-9]\d{9}$" 
+        class="form-control" name="mobilenumber" placeholder="Mobile Number" required="required">
+        <div *ngIf="mobilenumber.touched && mobilenumber.invalid">
+          <div *ngIf="mobilenumber.errors.required" style="color: red" >mobilenumber is required</div>
+          <div *ngIf="mobilenumber.errors.pattern" style="color:red">only numbers are allowed</div>
+
+        </div>
+      </div>
+
+<!-- date of birth -->
+      <div class="form-group">
+        <input type="date" class="form-control" name="dob" placeholder="Date Of Birth" required="required">
+      </div>
+
+<!-- password -->
+  <div class="form-group">
+          <input type="password" 
+          ngModel
+          #Password="ngModel"class="form-control" name="password" placeholder="Password" required="required">
+      </div>
+
+ <!-- confirm password  -->
+  <div class="form-group">
+          <input type="password" 
+          appConfirmEqualValidator="password"
+
+          ngModel 
+          #confirm_password="ngModel" 
+          class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+
+          <div *ngIf="confirm_password.touched && confirm_password.errors?.notEqual && !confirm_password.errors?.required">password and confirm password doesnot match</div>
+
+      </div>    
+      
+      <!--check box  -->
+      <div class="form-group">
+    <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+  </div>
+  <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-lg" [disabled]="form.invalid" >
+            Register
+          </button>
+      </div>
+  </form>
+<div class="text-center">Already have an account? <a routerLink="/log-user">Login here</a></div>
+</div>

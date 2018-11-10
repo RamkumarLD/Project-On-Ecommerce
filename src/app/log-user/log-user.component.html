@@ -1,0 +1,89 @@
+<!-- <p>
+  log-user works!
+</p> -->
+
+<!-- adding the bootstrap code for login form -->
+
+<!-- <div class="login-form">
+  <form action="/examples/actions/confirmation.php" method="post">
+      <h2 class="text-center">Log in</h2>       
+      <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" required="required">
+      </div>
+      <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" required="required">
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </div>
+      <div class="clearfix">
+          <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+          <a href="#" class="pull-right">Forgot Password?</a>
+      </div>        
+  </form>
+  <p class="text-center"><a href="#">Create an Account</a></p>
+</div> -->
+
+<!-- //////////////////////////////////////////////////////////////// -->
+
+<!-- Another UI for login form -->
+<div class="container">
+  
+  <form #form="ngForm" (ngSubmit)="loginUser(form.value)" action="/action_page.php">
+    <div class="row">
+      <h2 style="text-align:center">Login with Social Media or Manually</h2>
+      <div class="vl">
+        <span class="vl-innertext">or</span>
+      </div>
+
+      <div class="col">
+        <a routerLink="#" class="fb btn">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+         </a>
+        <a routerLink="#" class="twitter btn">
+          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        </a>
+        <a routerLink="#" class="google btn"><i class="fa fa-google fa-fw">
+          </i> Login with Google+
+        </a>
+      </div>
+
+      <div class="col">
+        <div class="hide-md-lg">
+          <p>Or sign in manually:</p>
+        </div>
+
+  <!-- input field for email id -->
+         {{message}} 
+        <input type="email" 
+        ngModel 
+        #email="ngModel"
+        required 
+        name="email" placeholder="Email ID" >
+        
+  <!-- input field for password -->
+        <input type="password" 
+        ngModel
+        #password="ngModel"
+        required
+         name="password" placeholder="Password" >
+   
+   
+        <!-- <input type="submit" value="Login" [disabled]="form.invalid"> -->
+        <button type="submit" class="btn btn-primary btn-md" [disabled]="form.invalid">login</button>
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+<div class="bottom-container">
+  <div class="row">
+    <div class="col">
+      <a routerLink="/reg-user" style="color:white" class="btn">Sign up</a>
+    </div>
+    <div class="col">
+      <a routerLink="#" style="color:white" class="btn">Forgot password?</a>
+    </div>
+  </div>
+</div>
